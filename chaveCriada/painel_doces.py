@@ -5,7 +5,6 @@
 
 
 
-
 import customtkinter as ctk
 from pymongo import MongoClient
 from cryptography.fernet import Fernet
