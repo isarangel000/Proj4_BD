@@ -3,10 +3,10 @@ from pymongo import MongoClient
 from cryptography.fernet import Fernet
 from datetime import datetime
 from bson.objectid import ObjectId
-import os  # usado pra verificar se o arquivo da chave existe
+import os  
 
 # --------------------------
-# Conexão com MongoDB
+# Conexão 
 # --------------------------
 def conectar_mongo():
     cliente = MongoClient(
@@ -17,9 +17,7 @@ def conectar_mongo():
 
 collection = conectar_mongo()
 
-# --------------------------
-# Criptografia
-# --------------------------
+
 def carregar_ou_gerar_chave():
     """Gera uma chave Fernet se não existir e salva em 'chave.key'"""
     if not os.path.exists("chave.key"):
@@ -42,7 +40,7 @@ def descriptografar(texto):
     return fernet.decrypt(texto).decode()
 
 # --------------------------
-# Interface moderna
+# Interface 
 # --------------------------
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("dark-blue")
@@ -52,9 +50,7 @@ app.configure(fg_color="#2b1a1a")
 app.title("🍬 Cofre de Doces Interativo 🎃")
 app.geometry("800x500")
 
-# --------------------------
-# Janela customizada de mensagem
-# --------------------------
+
 def mostrar_msg(titulo, texto, cor="#ff7518"):
     win = ctk.CTkToplevel(app)
     win.title(titulo)
@@ -65,9 +61,7 @@ def mostrar_msg(titulo, texto, cor="#ff7518"):
     ctk.CTkButton(win, text="Fechar", command=win.destroy, fg_color=cor, hover_color="#e25d00", corner_radius=10).pack(pady=10)
     win.grab_set()
 
-# --------------------------
-# Funções principais
-# --------------------------
+
 def adicionar_doce():
     nome = entry_nome.get()
     doce = entry_doce.get()
@@ -90,7 +84,7 @@ def adicionar_doce():
     entry_doce.delete(0, 'end')
     entry_qtd.delete(0, 'end')
 
-    listar_doces()  # atualiza a lista automaticamente
+    listar_doces() 
 
 def deletar_doce(doc_id):
     collection.delete_one({"_id": ObjectId(doc_id)})
